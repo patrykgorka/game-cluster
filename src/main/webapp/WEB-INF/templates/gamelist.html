@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout ::site-head">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Title</title>
+</head>
+
+<body>
+
+<header th:replace="layout :: site-header" />
+
+<div id="main"  th:unless="${#lists.isEmpty(getAllGames)}">
+<br>
+
+    <table>
+        <thead>
+        <tr>
+            <th th:text="#{game.id}">ID</th>
+            <th th:text="#{game.name}">NAME</th>
+            <th th:text="#{game.price}">PRICE</th>
+            <th th:text="#{game.developer}">DEVELOPER</th>
+            <th th:text="#{game.publisher}">PUBLISHER</th>
+            <th th:text="#{game.platform}">PLATFORM</th>
+            <th th:text="#{game.status}">PLATFORM</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="Games : ${getAllGames}">
+            <form action="#" th:action="@{/add}" th:object="${Games}" method="post">
+                <th th:text="${Games.id}">numerKatalogowy</th>
+                <th th:text="${Games.name}">nominal</th>
+                <th th:text="${Games.price}">opis</th>
+                <th th:text="${Games.developer}">waluta</th>
+                <th th:text="${Games.publisher}">cenaNabycia</th>
+                <th th:text="${Games.platform}">dataNabycia</th>
+                <th th:text="${Games.status}">dataNabycia</th>
+                <td>
+                    <button type="submit" name="remove" th:text="#{game.delete}" th:value="${Games.id}" >Delete</button>
+
+                    <a href="index.html" th:href="@{|/add/${Games.id}|}" ><button type="button" th:text="#{game.edit}">Edit</button></a>
+                </td>
+            </form>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<footer th:replace="layout :: site-footer" />
+
+</body>
+
+</html>

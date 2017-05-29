@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="site-head">
+    <title th:text="#{title.application}">Klaser</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" th:href="@{/css/style.css}" />
+    <link rel="icon" href="../../images/icon-game.png" th:href="@{/images/icon-game.png}" />
+</head>
+
+<body>
+<header th:fragment="site-header">
+    <div id="outer">
+        <div id="header">
+            <div id="logo">
+                <a href="index.html" th:href="@{/index/}">
+                    <img id="imglogo" th:src="@{/images/logo.png}" />
+                </a>
+            </div>
+            <div id="nav">
+                <ul>
+                    <li class="first active">
+                        <a th:href="@{/gamelist}">Lista Gier</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/add}">Dodaj Grę</a>
+                    </li>
+                    <li class="first active">
+                        <a th:href="@{/gamelist/exchange}">Gry na wymianę</a>
+                    </li>
+                </ul>
+                <br class="clear" />
+            </div>
+        </div>
+    </div>
+</header>
+
+<footer id="copyright" th:fragment="site-footer">
+    Górka Patryk <a href="https://github.com/guru338/aplikacja-zaliczeniowa"> Source code</a>
+    &copy; game-cluster, 2017
+</footer>
+</body>
+</html>

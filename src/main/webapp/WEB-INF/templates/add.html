@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout ::site-head">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Title</title>
+</head>
+
+<body>
+
+<header th:replace="layout :: site-header" />
+
+<div id="main">
+
+    <form action="#" th:action="@{/add}" th:object="${Games}" method="post">
+
+        <fieldset>
+
+            <ul id="error" th:if="${#fields.hasErrors('*')}" class="errorlist">
+                <li th:each="err : ${#fields.errors('*')}" th:text="${err}">Input is incorrect</li>
+            </ul>
+
+            <div>
+                <label for="id"> <span th:text="#{game.id}">id</span>
+                </label> <input type="text" th:field="*{id}" th:errorclass="fieldError" />
+            </div>
+            <div>
+                <label for="name"> <span th:text="#{game.name}">name</span>
+                </label> <input type="text" th:field="*{name}" th:error="*{name}"/>
+            </div>
+            <div>
+                <label for="price"> <span th:text="#{game.price}">price</span>
+                </label> <input type="text" th:field="*{price}" th:errorclass="fieldError" />
+            </div>
+            <div>
+                <label for="developer"> <span th:text="#{game.developer}">developer</span>
+                </label> <input type="text" th:field="*{developer}" th:errorclass="fieldError" />
+            </div>
+            <div>
+                <label for="publisher"> <span th:text="#{game.publisher}">publisher</span>
+                </label> <input type="text" th:field="*{publisher}" th:errorclass="fieldError" />
+            </div>
+            <div>
+                <label for="platform"> <span th:text="#{game.platform}">platform</span>
+                </label> <input type="text" th:field="*{platform}" th:errorclass="fieldError" />
+            </div>
+            <div>
+                <label for="status"> <span th:text="#{game.status}">status</span></label>
+                <select th:field="*{status}" th:errorclass="fieldError">
+                    <option th:each="status : ${getStatus}" th:value="${status}" th:text="${status}">Nowa</option>
+                </select>
+            </div>
+            <div class="submit">
+                <button  type="submit" name="createOrUpdate" th:value="*{id}" th:text="#{game.save}" >Zapisz</button>
+
+                <a href="klaser.html" th:href="@{/gamelist}" ><button type="button" th:text="#{game.cancel}">Cancel</button></a>
+            </div>
+
+        </fieldset>
+
+    </form>
+</div>
+
+<footer th:replace="layout :: site-footer" />
+
+</body>
+
+</html>
